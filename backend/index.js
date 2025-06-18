@@ -34,11 +34,12 @@ app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 
-// Serve frontend from the backend/dist folder
-app.use(express.static(path.join(__dirname, "dist")));
+// ✅ Serve frontend from backend/dist
+const frontendPath = path.join(__dirname, "backend", "dist");
+app.use(express.static(frontendPath));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname,  "dist", "index.html"));
+  res.sendFile(path.join(frontendPath, "index.html"));
 });
 
 // Start server
