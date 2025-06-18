@@ -37,8 +37,8 @@ app.use("/api/v1/application", applicationRoute);
 // Serve frontend from the backend/dist folder
 app.use(express.static(path.join(__dirname, "dist")));
 
-app.get("*", (_, res) => {
-  res.sendFile(path.resolve(__dirname,  "dist", "index.html"));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname,  "dist", "index.html"));
 });
 
 // Start server
