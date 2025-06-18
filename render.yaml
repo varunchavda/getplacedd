@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: gettplacedd
+    env: node
+    buildCommand: npm install
+    startCommand: node backend/index.js
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: SECRET_KEY
+        sync: false
+      - key: PORT
+        sync: false

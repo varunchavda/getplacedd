@@ -14,7 +14,7 @@ dotenv.config();
 const app = express();
 const __dirname = path.resolve();
 
-// Connect to MongoDB BEFORE the server starts
+// Connect to MongoDB BEFORE starting the server
 connectDB();
 
 // Middleware
@@ -23,24 +23,25 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const corsOptions = {
-  origin: ["http://localhost:5173", "https://gettplacedd.onrender.com"],
+  origin: ["http://localhost:5173", "https://getplacedd.onrender.com"],
   credentials: true,
 };
 app.use(cors(corsOptions));
 
-// API routes
+// API Routes
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 
-// Serve frontend
-app.use(express.static(path.join(__dirname, "./frontend/dist")));
+// Serve frontend from the backend/dist folder
+app.use(express.static(path.join(__dirname, "dist")));
+
 app.get("*", (_, res) => {
-  res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+  res.sendFile(path.resolve(__dirname, "dist", "index.html"));
 });
 
-// Start the server with dynamic port (for Render)
+// Start server
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`✅ Server running at port ${PORT}`);
