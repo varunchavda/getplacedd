@@ -9,7 +9,7 @@ const ProtectedRoute = ({children}) => {
 
     useEffect(()=>{
         if(user === null || user.role !== 'recruiter'){
-            navigate("/");
+            navigate("/login");
         }
     },[]);
 
@@ -20,3 +20,6 @@ const ProtectedRoute = ({children}) => {
     )
 };
 export default ProtectedRoute;
+
+
+
