@@ -71,6 +71,8 @@ const appRouter = createBrowserRouter([
     path: "/vadodara-companies",   // ✅ New route added here
     element: <VadodaraCompanies />,
   },
+
+  
   // admin ke liye yha se start hoga
   {
     path: "/admin/companies",
