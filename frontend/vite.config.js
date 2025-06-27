@@ -20,7 +20,7 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: './', // ✅ required so that assets load correctly in dist build
+  base: '/', // ✅ required so that assets load correctly in dist build
   plugins: [react()],
   resolve: {
     alias: {
