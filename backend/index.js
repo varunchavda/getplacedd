@@ -35,7 +35,7 @@ app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 
 // ✅ Serve frontend from backend/dist
-const frontendPath = path.join(__dirname, "backend", "dist");
+const frontendPath = path.join(__dirname,  "dist");
 app.use(express.static(frontendPath));
 
 app.get("*", (req, res) => {
