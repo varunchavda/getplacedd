@@ -19,6 +19,7 @@ import Committee from "./components/committee";
 import Faqs from "./components/faqs";
 import 'react-toastify/dist/ReactToastify.css';
 import VadodaraCompanies from "./components/VadodaraCompanies";
+import PrivateRoute from "./components/privateroute"; // add this import
 
 
 
@@ -50,7 +51,9 @@ const appRouter = createBrowserRouter([
   },
   {
     path: "/profile",
-    element: <Profile />,
+    element: ( <PrivateRoute>
+      <Profile />
+    </PrivateRoute>),
   },
   {
     path: "/InterviewMaterials",
