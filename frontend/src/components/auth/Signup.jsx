@@ -114,10 +114,10 @@ const Signup = () => {
   return (
     <div>
       <Navbar />
-      <div className="flex items-center justify-center max-w-7xl mx-auto">
+      <div className="flex items-center justify-center px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
         <form
           onSubmit={submitHandler}
-          className="w-1/2 border border-gray-200 rounded-md p-4 my-10"
+          className="w-full sm:w-4/5 md:w-2/3 lg:w-1/2 border border-gray-200 rounded-md p-6 my-10"
         >
           <h1 className="font-bold text-xl mb-5">Sign Up</h1>
           <div className="my-2">
@@ -182,8 +182,9 @@ const Signup = () => {
               placeholder="Enter password"
             />
           </div>
-          <div className="flex items-center justify-between">
-            <RadioGroup className="flex items-center gap-4 my-5">
+
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <RadioGroup className="flex flex-wrap items-center gap-4">
               <div className="flex items-center space-x-2">
                 <Input
                   type="radio"
@@ -207,6 +208,7 @@ const Signup = () => {
                 <Label htmlFor="r2">Admin</Label>
               </div>
             </RadioGroup>
+
             <div className="flex items-center gap-2">
               <Label>Profile</Label>
               <Input
@@ -217,6 +219,7 @@ const Signup = () => {
               />
             </div>
           </div>
+
           {loading ? (
             <Button className="w-full my-4">
               <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait
@@ -226,6 +229,7 @@ const Signup = () => {
               Signup
             </Button>
           )}
+
           <span className="text-sm">
             Already have an account?{" "}
             <Link to="/login" className="text-blue-600">
