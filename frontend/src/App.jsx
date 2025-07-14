@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Navbar from "./components/shared/Navbar";
+import Layout from "./components/shared/layout"; 
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import Home from "./components/Home";
@@ -17,62 +17,106 @@ import ProtectedRoute from "./components/admin/ProtectedRoute";
 import InterviewMaterials from "./components/InterviewMaterials";
 import Committee from "./components/committee";
 import Faqs from "./components/faqs";
-import 'react-toastify/dist/ReactToastify.css';
 import VadodaraCompanies from "./components/VadodaraCompanies";
 import PrivateRoute from "./components/privateroute";
 
-
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import 'react-toastify/dist/ReactToastify.css';
+
 const appRouter = createBrowserRouter([
+  // 🌐 Public / User Routes (with Layout)
   {
     path: "/",
-    element: <Home />,
+    element: (
+      <Layout>
+        <Home />
+      </Layout>
+    ),
   },
   {
     path: "/login",
-    element: <Login />,
+    element: (
+      <Layout>
+        <Login />
+      </Layout>
+    ),
   },
   {
     path: "/signup",
-    element: <Signup />,
+    element: (
+      <Layout>
+        <Signup />
+      </Layout>
+    ),
   },
   {
     path: "/jobs",
-    element: <Jobs />,
+    element: (
+      <Layout>
+        <Jobs />
+      </Layout>
+    ),
   },
   {
     path: "/description/:id",
-    element: <JobDescription />,
+    element: (
+      <Layout>
+        <JobDescription />
+      </Layout>
+    ),
   },
   {
     path: "/browse",
-    element: <Browse />,
+    element: (
+      <Layout>
+        <Browse />
+      </Layout>
+    ),
   },
   {
     path: "/profile",
-    element: ( <PrivateRoute>
-      <Profile />
-    </PrivateRoute>),
+    element: (
+    <PrivateRoute>
+      <Layout>
+        <Profile />
+      </Layout>
+      </PrivateRoute>
+    ),
   },
   {
     path: "/InterviewMaterials",
-    element: <InterviewMaterials />,
+    element: (
+      <Layout>
+        <InterviewMaterials />
+      </Layout>
+    ),
   },
   {
     path: "/committee",
-    element: <Committee />,
+    element: (
+      <Layout>
+        <Committee />
+      </Layout>
+    ),
   },
   {
     path: "/faqs",
-    element: <Faqs />,
+    element: (
+      <Layout>
+        <Faqs />
+      </Layout>
+    ),
   },
   {
-    path: "/vadodara-companies",   // ✅ New route added here
-    element: <VadodaraCompanies />,
+    path: "/vadodara-companies",
+    element: (
+      <Layout>
+        <VadodaraCompanies />
+      </Layout>
+    ),
   },
 
-  
-  // admin ke liye yha se start hoga
+  // 🔐 Admin Routes (no Layout)
   {
     path: "/admin/companies",
     element: (
@@ -122,10 +166,10 @@ const appRouter = createBrowserRouter([
     ),
   },
 ]);
+
 function App() {
   return (
     <div>
-      {/* based on the current URL in the browser, it will render the right component */}
       <RouterProvider router={appRouter} />
     </div>
   );
