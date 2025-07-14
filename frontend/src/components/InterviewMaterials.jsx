@@ -113,8 +113,16 @@ const materials = [
 
 const InterviewMaterial = () => {
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-gray-100 min-h-screen overflow-x-hidden">
+      {/* Page Title for SEO */}
+      <title>Interview Materials</title>
+
+      {/* Navigation Bar */}
       <Navbar className="shadow-md bg-white py-4" />
+<h1 className="text-3xl font-bold text-gray-800 text-center mt-8 mb-6">
+  Interview Materials
+</h1>
+      {/* Content Container */}
       <div className="max-w-6xl mx-auto my-10 px-4">
         <motion.div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {materials.map((material, index) => (
@@ -157,6 +165,8 @@ const InterviewMaterial = () => {
           ))}
         </motion.div>
       </div>
+
+      {/* Footer */}
       <Footer />
     </div>
   );

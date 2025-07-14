@@ -18,6 +18,7 @@ const Login = () => {
     password: "",
     role: "",
   });
+
   const { loading, user } = useSelector((store) => store.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -25,14 +26,14 @@ const Login = () => {
   //whenever the user tries to write something in the input field,
   // this function will be called and it updates the input state
   const changeEventHandler = (e) => {
-    setInput({ ...input, [e.target.name]: e.target. value });
+    setInput({ ...input, [e.target.name]: e.target.value });
   };
 
   //ASYNC - telling that this function will take time this is doing some work
   //AWAIT - tells that wait here until the work is done or we get the response
   const submitHandler = async (e) => {
     e.preventDefault(); // Stop page reload
-    try { 
+    try {
       dispatch(setLoading(true));
       // It sends the form data (input) to the backend's login API.
       const res = await axios.post(`${USER_API_END_POINT}/login`, input, {
@@ -40,7 +41,7 @@ const Login = () => {
           "Content-Type": "application/json",
         },
         withCredentials: true,
-      }); 
+      });
       if (res.data.success) {
         dispatch(setUser(res.data.user));
         navigate("/");
@@ -67,12 +68,14 @@ const Login = () => {
   return (
     <div>
       <Navbar />
-      <div className="flex items-center justify-center max-w-7xl mx-auto">
+      {/* Responsive Container for Login Form */}
+      <div className="flex items-center justify-center px-4 sm:px-6 md:px-8 max-w-7xl mx-auto">
         <form
           onSubmit={submitHandler}
-          className="w-1/2 border border-gray-200 rounded-md p-4 my-10"
+          className="w-full max-w-md border border-gray-200 rounded-md p-4 sm:p-6 md:p-8 my-10"
         >
           <h1 className="font-bold text-xl mb-5">Login</h1>
+
           <div className="my-2">
             <Label>Email</Label>
             <Input
@@ -95,6 +98,7 @@ const Login = () => {
             />
           </div>
 
+          {/* Role selection radio buttons */}
           <div className="flex items-center justify-between">
             <RadioGroup className="flex items-center gap-4 my-5">
               <div className="flex items-center space-x-2">
@@ -122,6 +126,7 @@ const Login = () => {
             </RadioGroup>
           </div>
 
+          {/* Show loading spinner or login button */}
           {loading ? (
             <Button className="w-full my-4">
               <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait
@@ -132,6 +137,7 @@ const Login = () => {
             </Button>
           )}
 
+          {/* Redirect to signup */}
           <span className="text-sm">
             Don't have an account?{" "}
             <Link to="/signup" className="text-blue-600">
@@ -146,5 +152,5 @@ const Login = () => {
 
 export default Login;
 
-//link is for navigation 
-//useNavigate is for redirecting to another page
+// link is for navigation 
+// useNavigate is for redirecting to another page

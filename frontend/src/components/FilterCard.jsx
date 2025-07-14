@@ -27,24 +27,27 @@ const filterData = [
 ];
 
 const FilterCard = () => {
-  //selectedValue is holing the selected filter value
-  //useSelector is getting the filtered jobs from the redux store
-  //setSearchedQuery is dispatching the selected value to the redux store
-  //useEffect is used to update the redux store whenever the selected value changes
-  // whenever a user selects or deselects a filter, the useEffect hook will run.
   const [selectedValue, setSelectedValue] = useState("");
   const dispatch = useDispatch();
   const jobs = useSelector((state) => state.job.filteredJobs || []);
-
+  const searchedQuery = useSelector((state) => state.job.searchedQuery);
+  
   const changeHandler = (value) => {
     // If the clicked value is already selected, reset the filter
     setSelectedValue((prev) => (prev === value ? "" : value));
   };
-
+  
   useEffect(() => {
     dispatch(setSearchedQuery(selectedValue)); // Dispatch an empty string when no filter is selected
   }, [selectedValue, dispatch]);
 
+  // Reset local state when searchedQuery is cleared from outside (like reset button)
+  useEffect(() => {
+    if (!searchedQuery || searchedQuery.trim() === "") {
+      setSelectedValue("");
+    }
+  }, [searchedQuery]);
+  
   return (
     <div className="w-full flex flex-col items-center overflow-hidden">
       <div className="w-full bg-[#5A189A] p-5 rounded-xl shadow-lg text-white">
@@ -52,7 +55,7 @@ const FilterCard = () => {
           Filter Internships
         </h1>
         <hr className="border-yellow-500/50 mb-4" />
-
+        
         {/* Scrollable filter section */}
         <div className="flex flex-col gap-4">
           {filterData.map((data, index) => (
@@ -63,7 +66,7 @@ const FilterCard = () => {
               <h2 className="font-semibold text-lg mb-2 border-b pb-1 border-yellow-400 text-yellow-300">
                 {data.filterType}
               </h2>
-
+              
               {/* Scrollable Container for Filters */}
               <div
                 className="flex flex-col gap-2 max-h-[160px] overflow-y-auto px-2 pr-3"

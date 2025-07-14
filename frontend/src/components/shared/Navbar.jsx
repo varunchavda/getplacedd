@@ -60,7 +60,7 @@ const Navbar = () => {
   return (
 
 
-    <motion.div className="w-full z-50 bg-gradient-to-r from-[#6A38C2] to-[#5B30A6] shadow-lg h-16">
+<motion.div className="w-full z-50 bg-gradient-to-r from-[#6A38C2] to-[#5B30A6] shadow-lg h-16 fixed top-0 left-0">
       <div className="flex items-center justify-between mx-auto max-w-7xl h-16 px-4">
         {/* Left Side: Menu Icon + Logo */}
         <div className="flex items-center gap-4">
